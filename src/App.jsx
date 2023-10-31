@@ -8,19 +8,15 @@ import { Route, Routes } from "react-router-dom";
 import Like from "./components/Like";
 import Mainhed from "./components/Mainhed";
 import Check from "./components/Check";
+import Conditional from "./components/Conditional";
+import { useGlobalContext } from "./context";
 
-const getLocalStorage = (key) => {
-  return localStorage.getItem(key)
-    ? JSON.parse(localStorage.getItem(key))
-    : [];
-};
-const getLocalStorageUser = () => {
-  return localStorage.getItem('user')
-    ? JSON.parse(localStorage.getItem('user'))
-    : {};
-};
+
+
 
 const App = () => {
+  const {getLocalStorage} = useGlobalContext();
+  const {getLocalStorageUser} = useGlobalContext();
   const id = uid();
   const img = "https://dummyimage.com/300x200/9f9fa1/fff";
 
@@ -32,13 +28,22 @@ const App = () => {
   const [like, setLike] = useState(getLocalStorage('like'))
   const [nicname, setNicname] = useState('')
   const [user, setUser] = useState(getLocalStorageUser());
-  // console.log(user);
+  
+
+  const inpName = document.getElementById('inpName');
+  const inpPrice = document.getElementById('inpPrice');
+
   const creaProduct = (e) => {
-    e.preventDefault();
-    const newItem = { id: id, image: img, name: item, narx: price };
-    setProduct([...product, newItem]);
-    setItem("");
-    setPrice("");
+    if (inpName.value.length > 0 && inpPrice.value.length > 0) {
+      e.preventDefault();
+      const newItem = { id: id, image: img, name: item, narx: price };
+      setProduct([...product, newItem]);
+      setItem("");
+      setPrice("");
+    }
+    else{
+      alert("Iltimos malumot kiritganingzga ishonch hosil qiling!");
+    }
   };
 
   useEffect(() => {
@@ -65,38 +70,26 @@ const likeProduct = (id) => {
   setLike([...like, likeItem]);
   console.log(likeItem);
 }
-
+const inp = document.getElementById('inp');
 const handleSubmit = (e) => {
   e.preventDefault();
-  const newUser = {name: nicname };
-  setUser({newUser});
-  setNicname("")
-  console.log(user);
+  if(inp.value.length > 0) {
+    const newUser = {name: nicname };
+    setUser(newUser);
+    setNicname("")
+  }
+  else{
+    alert("Iltimos ismingizni yozganingizga ishonch hosil qiling!")
+  }
 };
 
   return (
     <>
-      <Header />
+      <Header user={user}/>
       <Routes>
-        <Route path="/" element={<Mainhed />} />
-        <Route path="/add" element={<Check handleSubmit={handleSubmit} nicname={nicname} setNicname={setNicname}/>} />
-        <Route
-          path="/edit"
-          element={
-            <Product
-              name={item}
-              setName={setItem}
-              price={price}
-              setPrice={setPrice}
-              creaProduct={creaProduct}
-              product={product}
-              removeItem={removeItem}
-              buyProduct={buyProduct}
-              likeProduct={likeProduct}
-            />
-          }
-        />
-        <Route path="/buypage" element={<Buypage buyer={buyer} />} />
+        <Route path="/" element={<Mainhed product={product} buyProduct={buyProduct} likeProduct={likeProduct}/>} />
+        <Route path="/add" element={<Conditional handleSubmit={handleSubmit} user={user} nicname={nicname} setNicname={setNicname} name={item} setItem={setItem} price={price} setPrice={setPrice} creaProduct={creaProduct} product={product} removeItem={removeItem} buyProduct={buyProduct} likeProduct={likeProduct}/>} />
+        <Route path="/buypage" element={<Buypage buyer={buyer} removeItem={removeItem} />} />
         <Route path="/like" element={<Like />} />
       </Routes>
     </>

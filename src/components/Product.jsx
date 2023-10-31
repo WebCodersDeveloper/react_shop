@@ -3,7 +3,7 @@ import "./Product.scss";
 
 export default function Product({
   name,
-  setName,
+  setItem,
   price,
   setPrice,
   creaProduct,
@@ -18,12 +18,14 @@ export default function Product({
         <div className="newItem">
           <form action="" onSubmit={creaProduct}>
             <input
+              id="inpName"
               type="text"
               placeholder="Name..."
               value={name}
-              onChange={(e) => setName(e.target.value)}
+              onChange={(e) => setItem(e.target.value)}
             />
             <input
+              id="inpPrice"
               type="number"
               placeholder="Price..."
               value={price}

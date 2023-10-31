@@ -4,10 +4,10 @@ import logo from '../../public/img/logo.png';
 import avatar from '../../public/img/man.png'; 
 import maxsulot from '../../public/img/hero_fruits.png'; 
 import { Link } from 'react-router-dom';
-import Like from './Like';
 
 
-export default function Header() {
+
+export default function Header({user}) {
   const admin  = document.getElementById('admin');
 
   function test() {
@@ -158,7 +158,7 @@ export default function Header() {
 
               <div className="profile" onClick={test}>
                 <img className="man" src={avatar} alt="pic" />
-                <p>Алексей</p>
+                <p>{user.name}</p>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"

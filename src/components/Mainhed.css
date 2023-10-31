@@ -1,6 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Rubik:wght@300;400;500;600;700;800&display=swap');
+
 .header {
   max-width: 1920px;
-  height: 70px;
+  height: 100%;
   margin: 0 auto;
   position: relative;
 }
@@ -112,7 +114,7 @@
 .header .header_hero {
   display: flex;
   align-items: center;
-  /* border: 1px solid; */
+  /* border: 3px solid; */
   width: 100%;
   height: 200px;
   background-image: url(../../public/img/gero_bg.png);
@@ -131,4 +133,95 @@
   font-style: normal;
   font-weight: 700;
   line-height: 150%;
+}
+main{
+  max-width: 1920px;
+  /* border: 1px solid; */
+}
+.itemList {
+  width: 90%;
+  height: 90%;
+  margin: 0 auto;
+  padding: 30px 10px;
+  overflow-x: scroll;
+  row-gap: 65px;
+  column-gap: 45px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex;
+  /* border: 1px solid red; */
+}
+.itemList .item {
+  width: 300px;
+  height: 400px;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 1px 2px 8px 1px rgba(0, 0, 0, 0.3215686275);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* border: 1px solid greenyellow; */
+  font-family: Rubik;
+}
+.itemList .item img {
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+.itemList .item .txt {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 95%;
+  height: 100%;
+}
+.itemList .item .txt h3 {
+  font-size: 24px;
+  color: rgba(0, 0, 0, 0.6980392157);
+  text-transform: capitalize;
+}
+.itemList .item .txt .btn_cont {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.itemList .item .txt .btn_cont button {
+  margin: 0 auto;
+  padding: 10px 35px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: ease-in-out 350ms;
+}
+.itemList .item .txt .btn_cont .trash_btn {
+  color: red;
+}
+.itemList .item .txt .btn_cont .trash_btn:hover {
+  background: red;
+  color: rgba(0, 0, 0, 0.3215686275);
+}
+.itemList .item .txt .btn_cont .buy_btn {
+  color: rgb(0, 140, 255);
+}
+.itemList .item .txt .btn_cont .buy_btn:hover {
+  background: rgb(0, 140, 255);
+  color: #fff;
+}
+.itemList .item .txt .btn_cont .like_btn {
+  color: blueviolet;
+}
+.itemList .item .txt .btn_cont .like_btn .fa-regular {
+  display: block;
+}
+.itemList .item .txt .btn_cont .like_btn .fa-regular2 {
+  display: none;
+}
+.itemList .item .txt .btn_cont .like_btn:hover {
+  background: blueviolet;
+  color: #fff;
+}
+
+.itemList::-webkit-scrollbar {
+  display: none;
 }

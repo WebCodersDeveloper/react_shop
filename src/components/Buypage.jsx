@@ -1,7 +1,7 @@
 import React from "react";
 import "./buypage.scss";
 
-export default function Buypage() {
+export default function Buypage({removeItem}) {
   const buyers = JSON.parse(localStorage.getItem('buyer'))
   return (
     <>
@@ -20,7 +20,12 @@ export default function Buypage() {
                   <p>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                   </p>
+                  <div className="btn_cont">
+                    <button onClick={() => removeItem(item.id)} className="trash_btn">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
 
+                    </div>
                 </div>
               </div>
             );
